@@ -1,0 +1,17 @@
+version: '2'
+services:
+    flask_app:
+        build: .
+        ports:
+            - "5000:5000"
+        volumes:
+            - .:/senscritique_test
+        depends_on:
+            - cache_redis
+    cache_redis:
+        image: redis
+        volumes:
+            - cache_redis:/data
+volumes:
+  cache_redis:
+    driver: local
